@@ -22,3 +22,6 @@ jobs:
 
       - name: Build with Fastlane
         run: bundle exec fastlane ios build
+
+      - name: Test
+        run: bundle exec fastlane ios test        
