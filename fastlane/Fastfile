@@ -18,4 +18,15 @@ platform :ios do
       device: "iPhone 16"
     )
   end
+
+  desc "Archive the iOS app"
+  lane :archive do
+    gym(
+      project: "CICDLabApp/CICDLabApp.xcodeproj",
+      scheme: "CICDLabApp",
+      configuration: "Release",
+      skip_package_ipa: true,
+      destination: "generic/platform=iOS"
+    )
+  end  
 end

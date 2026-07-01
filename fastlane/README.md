@@ -23,6 +23,22 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Build the iOS app for simulator
 
+### ios test
+
+```sh
+[bundle exec] fastlane ios test
+```
+
+Run iOS tests
+
+### ios archive
+
+```sh
+[bundle exec] fastlane ios archive
+```
+
+Archive the iOS app
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
