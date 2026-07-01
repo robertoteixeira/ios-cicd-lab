@@ -1,0 +1,12 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build the iOS app for simulator"
+  lane :build do
+    xcodebuild(
+      project: "CICDLabApp/CICDLabApp.xcodeproj",
+      scheme: "CICDLabApp",
+      destination: "generic/platform=iOS Simulator"
+    )
+  end
+end
