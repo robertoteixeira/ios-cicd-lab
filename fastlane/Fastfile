@@ -10,6 +10,13 @@ platform :ios do
     )
   end
 
+  desc "Increment the iOS build number"
+  lane :increment_build do
+    increment_build_number(
+      xcodeproj: "CICDLabApp/CICDLabApp.xcodeproj"
+    )
+  end
+
   desc "Run iOS tests"
   lane :test do
     scan(
