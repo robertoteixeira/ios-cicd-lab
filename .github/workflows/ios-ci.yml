@@ -33,5 +33,22 @@ jobs:
           name: build-logs
           path: ~/Library/Logs
 
-      - name: Test
-        run: bundle exec fastlane ios test        
+  test:
+    if: github.event_name == 'pull_request'
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Test with Fastlane
+        run: bundle exec fastlane ios test
