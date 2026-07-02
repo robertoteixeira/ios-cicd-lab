@@ -1,6 +1,12 @@
 default_platform(:ios)
 
 platform :ios do
+  desc "Prepare and build app in CI"
+  lane :ci_build do
+    set_ci_build_number
+    build
+  end
+
   desc "Build the iOS app for simulator"
   lane :build do
     xcodebuild(
