@@ -23,8 +23,11 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
 
+      - name: Set CI buld number
+        run: bundle exec fastlane ios set_ci_build_number
+
       - name: Build with Fastlane
-        run: bundle exec fastlane ios build
+        run: bundle exec fastlane ios build | tee build.log
 
       - name: Upload DerivedData Logs
         if: always()
