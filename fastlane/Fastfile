@@ -23,7 +23,8 @@ platform :ios do
 
     increment_build_number(
       build_number: build_number,
-      xcodeproj: "CICDLabApp/CICDLabApp.xcodeproj"
+      xcodeproj: "CICDLabApp/CICDLabApp.xcodeproj",
+      skip_info_plist: true
     )    
   end
 
