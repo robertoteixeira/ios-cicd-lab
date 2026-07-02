@@ -17,6 +17,16 @@ platform :ios do
     )
   end
 
+  desc "Set build number from CI"
+  lane :set_ci_build_number do
+    build_number = ENV["GITHUB_RUN_NUMBER"] || Time.now.strftime("%Y%m%d%H%M")
+
+    increment_build_number(
+      build_number: build_number,
+      xcodeproj: "CICDLabApp/CICDLabApp.xcodeproj"
+    )    
+  end
+
   desc "Run iOS tests"
   lane :test do
     scan(
