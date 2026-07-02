@@ -51,4 +51,4 @@ jobs:
           bundler-cache: true
 
       - name: Test with Fastlane
-        run: bundle exec fastlane ios test
+        run: bundle exec fastlane ios ci_test

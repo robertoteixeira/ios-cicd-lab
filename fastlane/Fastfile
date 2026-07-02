@@ -7,6 +7,11 @@ platform :ios do
     build
   end
 
+  desc "Run tests in CI"
+  lane :ci_test do
+    test
+  end  
+
   desc "Build the iOS app for simulator"
   lane :build do
     xcodebuild(
