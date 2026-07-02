@@ -1,5 +1,11 @@
 default_platform(:ios)
 
+IOS_PROJECT = "CICDLabApp/CICDLabApp.xcodeproj"
+IOS_SCHEME = "CICDLabApp"
+SIMULATOR_DESTINATION = "generic/platform=iOS Simulator"
+TEST_DEVICE = "iPhone 16"
+ARCHIVE_DESTINATION = "generic/platform=iOS"
+
 platform :ios do
   desc "Prepare and build app in CI"
   lane :ci_build do
@@ -10,21 +16,21 @@ platform :ios do
   desc "Run tests in CI"
   lane :ci_test do
     test
-  end  
+  end
 
   desc "Build the iOS app for simulator"
   lane :build do
     xcodebuild(
-      project: "CICDLabApp/CICDLabApp.xcodeproj",
-      scheme: "CICDLabApp",
-      destination: "generic/platform=iOS Simulator"
+      project: IOS_PROJECT,
+      scheme: IOS_SCHEME,
+      destination: SIMULATOR_DESTINATION
     )
   end
 
   desc "Increment the iOS build number"
   lane :increment_build do
     increment_build_number(
-      xcodeproj: "CICDLabApp/CICDLabApp.xcodeproj"
+      xcodeproj: IOS_PROJECT
     )
   end
 
@@ -34,28 +40,28 @@ platform :ios do
 
     increment_build_number(
       build_number: build_number,
-      xcodeproj: "CICDLabApp/CICDLabApp.xcodeproj",
+      xcodeproj: IOS_PROJECT,
       skip_info_plist: true
-    )    
+    )
   end
 
   desc "Run iOS tests"
   lane :test do
     scan(
-      project: "CICDLabApp/CICDLabApp.xcodeproj",
-      scheme: "CICDLabApp",
-      device: "iPhone 16"
+      project: IOS_PROJECT,
+      scheme: IOS_SCHEME,
+      device: TEST_DEVICE
     )
   end
 
   desc "Archive the iOS app"
   lane :archive do
     gym(
-      project: "CICDLabApp/CICDLabApp.xcodeproj",
-      scheme: "CICDLabApp",
+      project: IOS_PROJECT,
+      scheme: IOS_SCHEME,
       configuration: "Release",
       skip_package_ipa: true,
-      destination: "generic/platform=iOS"
+      destination: ARCHIVE_DESTINATION
     )
-  end  
+  end
 end
