@@ -9,6 +9,7 @@ BUILD_OUTPUT_DIRECTORY = "build"
 ARCHIVE_PATH = "#{BUILD_OUTPUT_DIRECTORY}/CICDLabApp.xcarchive"
 IPA_OUTPUT_DIRECTORY = "#{BUILD_OUTPUT_DIRECTORY}/ipa"
 IPA_OUTPUT_NAME = "CICDLabApp.ipa"
+EXPORT_METHOD = "app-store"
 
 platform :ios do
   desc "Prepare and build app in CI"
