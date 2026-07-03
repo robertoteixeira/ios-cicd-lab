@@ -65,19 +65,6 @@ platform :ios do
     )
   end
 
-  desc "Archive the iOS app"
-  lane :archive do
-    gym(
-      project: IOS_PROJECT,
-      scheme: IOS_SCHEME,
-      configuration: "Release",
-      destination: ARCHIVE_DESTINATION,
-      archive_path: ARCHIVE_PATH,
-      skip_package_ipa: true,
-      clean: true
-    )
-  end
-
   desc "Print the current app version and build number"
   lane :version_info do
     version = get_version_number(
@@ -103,7 +90,33 @@ platform :ios do
       version_number: version,
       xcodeproj: IOS_PROJECT
     )
+  end  
+
+  desc "Archive the iOS app"
+  lane :archive do
+    gym(
+      project: IOS_PROJECT,
+      scheme: IOS_SCHEME,
+      configuration: "Release",
+      destination: ARCHIVE_DESTINATION,
+      archive_path: ARCHIVE_PATH,
+      skip_package_ipa: true,
+      clean: true
+    )
   end
   
+  desc "Export an IPA from the app archive"
+  lane :export_ipa do
+    gym(
+      project: IOS_PROJECT,
+      scheme: IOS_SCHEME,
+      configuration: "Release",
+      archive_path: ARCHIVE_PATH,
+      output_directory: IPA_OUTPUT_DIRECTORY,
+      output_name: IPA_OUTPUT_NAME,
+      export_method: EXPORT_METHOD,
+      skip_build_archive: true
+    )
+  end
   
 end

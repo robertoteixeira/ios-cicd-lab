@@ -71,14 +71,6 @@ Set build number from CI
 
 Run iOS tests
 
-### ios archive
-
-```sh
-[bundle exec] fastlane ios archive
-```
-
-Archive the iOS app
-
 ### ios version_info
 
 ```sh
@@ -94,6 +86,22 @@ Print the current app version and build number
 ```
 
 Set the marketing version
+
+### ios archive
+
+```sh
+[bundle exec] fastlane ios archive
+```
+
+Archive the iOS app
+
+### ios export_ipa
+
+```sh
+[bundle exec] fastlane ios export_ipa
+```
+
+Export an IPA from the app archive
 
 ----
 
