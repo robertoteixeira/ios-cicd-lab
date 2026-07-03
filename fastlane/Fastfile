@@ -7,6 +7,8 @@ TEST_DEVICE = "iPhone 16"
 ARCHIVE_DESTINATION = "generic/platform=iOS"
 BUILD_OUTPUT_DIRECTORY = "build"
 ARCHIVE_PATH = "#{BUILD_OUTPUT_DIRECTORY}/CICDLabApp.xcarchive"
+IPA_OUTPUT_DIRECTORY = "#{BUILD_OUTPUT_DIRECTORY}/ipa"
+IPA_OUTPUT_NAME = "CICDLabApp.ipa"
 
 platform :ios do
   desc "Prepare and build app in CI"
