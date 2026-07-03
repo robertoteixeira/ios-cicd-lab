@@ -20,6 +20,12 @@ platform :ios do
     test
   end
 
+  desc "Create an archive in CI"
+  lane :ci_archive do
+    set_ci_build_number
+    archive
+  end
+
   desc "Build the iOS app for simulator"
   lane :build do
     xcodebuild(
