@@ -48,7 +48,9 @@ platform :ios do
 
   desc "Set build number from CI"
   lane :set_ci_build_number do
-    build_number = ENV["GITHUB_RUN_NUMBER"] || Time.now.strftime("%Y%m%d%H%M")
+    build_number = ENV["CI_BUILD_NUMBER"] || ENV["GITHUB_RUN_NUMBER"]
+
+    UI.user_error!("CI_BUILD_NUMBER or GITHUB_RUN_NUMBER is required") unless build_number
 
     increment_build_number(
       build_number: build_number,
