@@ -15,6 +15,22 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios ci_build
+
+```sh
+[bundle exec] fastlane ios ci_build
+```
+
+Prepare and build app in CI
+
+### ios ci_test
+
+```sh
+[bundle exec] fastlane ios ci_test
+```
+
+Run tests in CI
+
 ### ios build
 
 ```sh
@@ -31,6 +47,14 @@ Build the iOS app for simulator
 
 Increment the iOS build number
 
+### ios set_ci_build_number
+
+```sh
+[bundle exec] fastlane ios set_ci_build_number
+```
+
+Set build number from CI
+
 ### ios test
 
 ```sh
@@ -46,6 +70,22 @@ Run iOS tests
 ```
 
 Archive the iOS app
+
+### ios version_info
+
+```sh
+[bundle exec] fastlane ios version_info
+```
+
+Print the current app version and build number
+
+### ios set_version
+
+```sh
+[bundle exec] fastlane ios set_version
+```
+
+Set the marketing version
 
 ----
 

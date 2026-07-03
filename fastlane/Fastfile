@@ -64,4 +64,33 @@ platform :ios do
       destination: ARCHIVE_DESTINATION
     )
   end
+
+  desc "Print the current app version and build number"
+  lane :version_info do
+    version = get_version_number(
+      xcodeproj: IOS_PROJECT,
+      target: IOS_SCHEME
+    )
+
+    build_number = get_build_number(
+      xcodeproj: IOS_PROJECT
+    )
+
+    UI.message("Marketing version: #{version}")
+    UI.message("Build number: #{build_number}")
+  end
+
+  desc "Set the marketing version"
+  lane :set_version do |options|
+    version = options[:version]
+
+    UI.user_error!("Pass a version, for example: fastlane ios set_version version:1.1.0") unless version
+
+    increment_version_number(
+      version_number: version,
+      xcodeproj: IOS_PROJECT
+    )
+  end
+  
+  
 end
