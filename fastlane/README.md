@@ -39,6 +39,14 @@ Run tests in CI
 
 Create an archive in CI
 
+### ios ci_package
+
+```sh
+[bundle exec] fastlane ios ci_package
+```
+
+Create a signed IPA in CI
+
 ### ios build
 
 ```sh
