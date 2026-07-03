@@ -2,6 +2,7 @@ default_platform(:ios)
 
 IOS_PROJECT = "CICDLabApp/CICDLabApp.xcodeproj"
 IOS_SCHEME = "CICDLabApp"
+APP_IDENTIFIER = "com.roberto.CICDLabApp"
 SIMULATOR_DESTINATION = "generic/platform=iOS Simulator"
 TEST_DEVICE = "iPhone 16"
 ARCHIVE_DESTINATION = "generic/platform=iOS"
@@ -107,6 +108,10 @@ platform :ios do
   
   desc "Export an IPA from the app archive"
   lane :export_ipa do
+    profile_name = ENV["APP_STORE_PROVISIONING_PROFILE"]
+
+    UI.user_error!("APP_STORE_PROVISIONING_PROFILE is required") unless profile_name
+
     gym(
       project: IOS_PROJECT,
       scheme: IOS_SCHEME,
@@ -115,7 +120,13 @@ platform :ios do
       output_directory: IPA_OUTPUT_DIRECTORY,
       output_name: IPA_OUTPUT_NAME,
       export_method: EXPORT_METHOD,
-      skip_build_archive: true
+      skip_build_archive: true,
+      export_options: {
+        method: EXPORT_METHOD,
+        provisioningProfiles: {
+          APP_IDENTIFIER => profile_name
+        }
+      }
     )
   end
   
