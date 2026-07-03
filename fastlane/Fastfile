@@ -5,6 +5,8 @@ IOS_SCHEME = "CICDLabApp"
 SIMULATOR_DESTINATION = "generic/platform=iOS Simulator"
 TEST_DEVICE = "iPhone 16"
 ARCHIVE_DESTINATION = "generic/platform=iOS"
+BUILD_OUTPUT_DIRECTORY = "build"
+ARCHIVE_PATH = "#{BUILD_OUTPUT_DIRECTORY}/CICDLabApp.xcarchive"
 
 platform :ios do
   desc "Prepare and build app in CI"
@@ -60,8 +62,10 @@ platform :ios do
       project: IOS_PROJECT,
       scheme: IOS_SCHEME,
       configuration: "Release",
+      destination: ARCHIVE_DESTINATION,
+      archive_path: ARCHIVE_PATH,
       skip_package_ipa: true,
-      destination: ARCHIVE_DESTINATION
+      clean: true
     )
   end
 
