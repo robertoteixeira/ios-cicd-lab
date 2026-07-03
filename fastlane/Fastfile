@@ -12,6 +12,23 @@ IPA_OUTPUT_DIRECTORY = "#{BUILD_OUTPUT_DIRECTORY}/ipa"
 IPA_OUTPUT_NAME = "CICDLabApp.ipa"
 EXPORT_METHOD = "app-store"
 
+def app_store_connect_api_key_from_env
+  key_id = ENV["APP_STORE_CONNECT_API_KEY_ID"]
+  issuer_id = ENV["APP_STORE_CONNECT_API_ISSUER_ID"]
+  key_path = ENV["APP_STORE_CONNECT_API_KEY_PATH"]
+
+  UI.user_error!("APP_STORE_CONNECT_API_KEY_ID is required") unless key_id
+  UI.user_error!("APP_STORE_CONNECT_API_ISSUER_ID is required") unless issuer_id
+  UI.user_error!("APP_STORE_CONNECT_API_KEY_PATH is required") unless key_path
+  UI.user_error!("APP_STORE_CONNECT_API_KEY_PATH does not exist: #{key_path}") unless File.exist?(key_path)
+
+  app_store_connect_api_key(
+    key_id: key_id,
+    issuer_id: issuer_id,
+    key_filepath: key_path
+  )
+end
+
 platform :ios do
   desc "Prepare and build app in CI"
   lane :ci_build do
