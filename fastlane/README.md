@@ -31,6 +31,14 @@ Prepare and build app in CI
 
 Run tests in CI
 
+### ios ci_archive
+
+```sh
+[bundle exec] fastlane ios ci_archive
+```
+
+Create an archive in CI
+
 ### ios build
 
 ```sh
